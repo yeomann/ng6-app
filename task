@@ -1,0 +1,73 @@
+
+
+Take the attached data set screening.json and write a web page (or simple set of pages) to present the data. 
+
+The result set is reasonably large so we need to be able to filter the data by:
+
+* Name
+* country check severity (Critical, Warning, Ok)
+
+and sort the data by:
+
+* name
+* created
+* modified
+
+
+Things to consider - performance, efficient use of space, usability, cross-browser, test driven development.
+
+You can use whatever server side technology you like (or none at all if you think that's appropriate). 
+Just give us some instructions if you use anything *really* eccentric. 
+
+You can use whatever frameworks or libraries you like, but be prepared to justify your use of them.
+
+You should aim to get this test back to us within a day but there is no precise time limit. 
+
+
+
+
+<!-- <td>{{x.company_blacklists}}</td>
+<td>{{x.port_blacklists}}</td>
+<td> {{x.country_blacklists}} </td>
+<td> {{x.ship_blacklists}} </td>
+<td> {{x.country_blacklists}} </td>
+<td> {{x.id}} </td>
+<td> {{x.company_check_prior_months}} </td>
+<td> {{x.company_check_prior_months_severity}} </td> -->
+        <!-- <tr data-ng-repeat="x in data | orderBy:predicate:reverse">
+        "company_check_severity_technical_manager_sdn": null,
+        "company_check_severity_technical_manager_generic": null,
+        "company_check_severity_group_beneficial_owner": null,
+        "company_check_severity_group_beneficial_owner_sdn": null,
+        "company_check_severity_group_beneficial_owner_generic": null,
+        "company_check_severity_ship_manager": null,
+        "company_check_severity_ship_manager_sdn": null,
+        "company_check_severity_ship_manager_generic": null,
+        "company_check_severity_operator": null,
+        "company_check_severity_operator_sdn": null,
+        "company_check_severity_operator_generic": null,
+        "company_check_severity_registered_owner": null,
+        "company_check_severity_registered_owner_sdn": null,
+        "company_check_severity_registered_owner_generic": null,
+        "country_check_severity": "90-CRITICAL",
+        "country_check_unknown_severity": "70-WARNING",
+        "ship_sanction_check_severity": "90-CRITICAL",
+        "ship_sanction_check_severity_sdn": "90-CRITICAL",
+        "ship_sanction_check_severity_generic": "90-CRITICAL",
+        "ship_sanction_prior_months": 3,
+        "ship_sanction_prior_months_severity": "70-WARNING",
+        "port_visit_severity": "70-WARNING",
+        "no_ais_position_severity": "70-WARNING",
+        "zone_severity": "70-WARNING",
+        "ship_inspection_detained": "70-WARNING",
+        "ship_inspection_deficiency"
+ -->
+
+	<!-- <h2>Im from Factory</h2>
+	<h2>name = {{ $ctrl.name }}</h2>
+	<h2>danish = {{ $ctrl.danish }}</h2>
+	<h2>person = {{ $ctrl.person }}</h2>
+	<h2>person = {{ $ctrl.person.name }}</h2>
+	 -->
+
+     s

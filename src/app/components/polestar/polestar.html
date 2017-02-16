@@ -1,0 +1,153 @@
+<article class="polestar__wrapper">
+    <header class="polestar__header">
+        <form class="polestar__form">
+            <label class="polestar__form--label" for="">
+                Search & Filter:
+            </label>
+            <input data-ng-model="query" type="text" class="polestar__form--search-input" placeholder="Filter by Name or country check severity (Critical, Warning, Ok)" autofocus>
+        </form>
+    </header>
+    <nav class="polestar__nav displayf justify-content-center">
+        <ul>
+            <li>Current Count: <span class="w-clr">{{$ctrl.count}}</span></li>
+            <li><a href="{{$ctrl.next}}">Next</a></li>
+            <li><a href="{{$ctrl.previous}}">previous</a></li>
+        </ul>
+    </nav>
+	<table id="polestar-table-large">
+		<thead>
+			<tr>
+				<th colspan="0">
+                    <a href="#" data-ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                    Name 
+                        <span data-ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span data-ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+				</th>
+				<th colspan="0">
+                    <a href="#" data-ng-click="sortType = 'created'; sortReverse = !sortReverse">
+                    Created at 
+                        <span data-ng-show="sortType == 'created' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span data-ng-show="sortType == 'created' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+				<th colspan="0">
+                    <a href="#" data-ng-click="sortType = 'modified'; sortReverse = !sortReverse">
+                    Modified at 
+                        <span data-ng-show="sortType == 'modified' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span data-ng-show="sortType == 'modified' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th colspan="0">URL</th>
+                <th colspan="0">Country Check Severity</th> 
+                <th colspan="0">BlackList Info</th>
+                <th colspan="0">Company Info</th>
+                <th colspan="0">Country Info</th>
+                <th colspan="0">Ship Info</th>
+                <th colspan="0">Other Info</th>
+			</tr>
+		</thead>
+		<tbody>
+        <tr data-ng-repeat="x in $ctrl.screening_results | orderBy:sortType:sortReverse | PolestarFilter:query">
+        	<!-- name -->
+            <td> {{x.name}} </td>
+        	<!-- created at -->
+            <td> {{x.created  | date:"MM/dd/yyyy 'at' HH:mm:ssa" }} </td> <!-- 2016-03-07T08:01:46.013000Z -->
+            <!-- modified at -->
+            <td> {{x.modified | date:"MM/dd/yyyy 'at' HH:mm:ssa" }} </td>
+            <!-- URL -->
+            <td><a href="{{x.url}}">URL link</a></td>
+            <!-- country_check_severity -->
+            <td> {{x.country_check_severity}} </td>
+            <!-- Blacklist info -->
+            <td>
+                <a ng-click="$ctrl.openTheDialog(x, $event);" data-which="blacklist">View Now {{show}}</a>
+            </td>
+            <!-- Company info -->
+            <td>
+                <a ng-click="$ctrl.openTheDialog(x, $event)" data-which="companyinfo">View Now</a>
+            </td>
+            <!-- Country info -->
+            <td>
+                <a ng-click="$ctrl.openTheDialog(x, $event)" data-which="countryinfo">View Now</a>
+            </td>
+            <!-- ship info -->
+            <td>
+                <a ng-click="$ctrl.openTheDialog(x, $event)" data-which="shipinfo">View Now</a>
+            </td>
+            <!-- other info -->
+            <td>
+                <a ng-click="$ctrl.openTheDialog(x, $event)" data-which="otherinfo">View Now</a>
+            </td>
+            <script type="text/ng-template" id="templateId">
+                <!-- Blacklist info -->
+                <div ng-if="show == 'blacklist'">
+                    <h3><strong>Name: </strong>{{x.name}}</h3>
+                    <p><strong>Company Blacklists: </strong><a href="http://screening.polestar-test.local{{x.company_blacklists}}">Click Here</a></p>
+                    <p><strong>Port Blacklists: </strong><a href="http://screening.polestar-test.local{{x.port_blacklists}}">Click Here</a></p>
+                    <p><strong>Country Blacklists: </strong><a href="http://screening.polestar-test.local{{x.country_blacklists}}">Click Here</a></p>
+                    <p><strong>Ship Blacklists: </strong><a href="http://screening.polestar-test.local{{x.ship_blacklists}}">Click Here</a></p>
+                </div>
+                <!-- Company info -->
+                <div ng-if="show == 'companyinfo'">
+                    <h3>Name: {{x.name}}</h3>
+                    <p><strong>Company prior months:</strong> {{x.company_check_prior_months}}</p>
+                    <p><strong>Company prior months severity:</strong> {{x.company_check_prior_months_severity}}</p>
+                    <p><strong>Company check severity:</strong> {{x.company_check_severity}}</p>
+                    <p><strong>Company check severity technical manager:</strong> {{x.company_check_severity_technical_manager}}</p>
+                    <p><strong>Company check severity technical manager sdn:</strong> {{x.company_check_severity_technical_manager_sdn}}</p>
+                    <p><strong>Company check severity technical manager generic:</strong> {{x.company_check_severity_technical_manager_generic}}</p>
+                    <p><strong>Company check severity group beneficial owner:</strong> {{x.company_check_severity_group_beneficial_owner}}</p>
+                    <p><strong>Company check severity group beneficial owner sdn:</strong> {{x.company_check_severity_group_beneficial_owner_sdn}}</p>
+                    <p><strong>Company check severity group beneficial owner generic:</strong> {{x.company_check_severity_group_beneficial_owner_generic}}</p>
+                    <p><strong>Company check severity ship manager:</strong> {{x.company_check_severity_ship_manager}}</p>
+                    <p><strong>country check severity:</strong> {{x.country_check_severity}}</p>
+                    <p><strong>country check unknown severity:</strong> {{x.country_check_unknown_severity}}</p>
+                    <p><strong>Company check severity operator:</strong> {{x.company_check_severity_operator}}</p>
+                    <p><strong>Company check severity operator sdn:</strong> {{x.company_check_severity_operator_sdn}}</p>
+                    <p><strong>Company check severity operator generic:</strong> {{x.company_check_severity_operator_generic}}</p>
+                    <p><strong>Company check severity registered owner:</strong> {{x.company_check_severity_registered_owner}}</p>
+                    <p><strong>Company check severity registered owner sdn:</strong> {{x.company_check_severity_registered_owner_sdn}}</p>
+                    <p><strong>Company check severity registered owner generic:</strong> {{x.company_check_severity_registered_owner_generic}}</p>
+                </div>
+                <!-- Country info -->
+                <div ng-if="show == 'countryinfo'">
+                    <h3>Name: {{x.name}}</h3>
+                    <p><strong>Country check severity:</strong> {{x.country_check_severity}}</p>
+                    <p><strong>Country check unknown severity:</strong> {{x.country_check_unknown_severity}}</p>
+                </div>
+                <!-- ship info -->
+                <div ng-if="show == 'shipinfo'">
+                    <h3>Name: {{x.name}}</h3>
+                    <p><strong>ship sanction check severity:</strong> {{x.ship_sanction_check_severity}}</p>
+                    <p><strong>ship sanction check severity sdn:</strong> {{x.ship_sanction_check_severity_sdn}}</p>
+                    <p><strong>ship sanction check severity generic:</strong> {{x.ship_sanction_check_severity_generic}}</p>
+                    <p><strong>ship sanction prior months:</strong> {{x.ship_sanction_prior_months}}</p>
+                    <p><strong>ship sanction prior months severity:</strong> {{x.ship_sanction_prior_months_severity}}</p>
+                    <p><strong>ship inspection detained:</strong> {{x.ship_inspection_detained}}</p>
+                    <p><strong>ship inspection deficiency:</strong> {{x.ship_inspection_deficiency}}</p>
+                </div>
+                <!-- other info -->
+                <div ng-if="show == 'otherinfo'">
+                    <h3>Name: {{x.name}}</h3>
+                    <p><strong>ID:</strong> {{x.id}}</p>
+                    <p><strong>Port visit severity:</strong> {{x.port_visit_severity}}</p>
+                    <p><strong>No ais position severity:</strong> {{x.no_ais_position_severity}}</p>
+                    <p><strong>Zone severity:</strong> {{x.zone_severity}}</p>
+                </div>
+            </script>
+        </tr>
+		</tbody>
+    </table>
+    <div data-ng-show="($ctrl.screening_results | PolestarFilter:query).length == 0" class="polestar__form--errorMsg">
+        <h2>Boom you hit the 404 in search!</strong> </h2>
+        <p>Actually, Filter is capable of searching <strong>Names</strong> </p>
+        <p>and severity check of countries with following only:</p>
+        <ul>
+            <li><strong>Critical</strong></li>
+            <li><strong>Warning</strong></li>
+            <li><strong>Ok</strong></li>
+        </ul>
+        <h5>Please try different term!</h5>
+    </div>
+</article>
