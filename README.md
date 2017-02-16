@@ -1,6 +1,6 @@
 # Instruction 
 
-> The whole app is based on [Angular](https://angularjs.org), [ES6](https://git.io/es6features), and [Webpack](http://webpack.github.io/), Original Repo can by Found on github by the name of [NG6](https://github.com/AngularClass/NG6-starter)
+> The whole app is based on [Angular](https://angularjs.org), [ES6](https://git.io/es6features), and [Webpack](http://webpack.github.io/), As a started Kit, I used [NG6](https://github.com/AngularClass/NG6-starter)
 
 # Table of Contents
 * [Walkthrough](#walkthrough)
